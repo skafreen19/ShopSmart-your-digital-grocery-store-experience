@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopSmart - Cart</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>ShopSmart 🛒</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="admin.html">Admin</a>
+       <button  onclick="logout()"
+      style="margin-left: 10px; z-index: 9999;position: relative;">Logout</button>
+    </nav>
+  </header>
+
+  <main>
+<button onclick="clearSales()">Clear Sales</button>
+  <section>
+<h2>Cart Summary</h2>
+<ul id="cart-items"></ul>
+<p><strong>Total:</strong> ₹<span id="total">0</span></p>
+  </section>
+</main>
+
+  <footer>
+    <p>&copy; 2025 ShopSmart. All rights reserved.</p>
+  </footer>
+  <script>
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartItems = document.getElementById('cart-items');
+  const totalSpan = document.getElementById('total');
+
+  let total = 0;
+  cart.forEach((item, index) => {
+  const li = document.createElement('li');
+  li.innerHTML = `${item.product} - ₹${item.price} <button class="remove-btn" data-index="${index}">Remove</button>`;
+  cartItems.appendChild(li);
+  total += item.price;
+});
+
+// Remove item functionality
+cartItems.addEventListener('click', (e) => {
+  if (e.target.classList.contains('remove-btn')) {
+    const index = e.target.dataset.index;
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    location.reload();
+  }
+});
+
+  totalSpan.textContent = total;
+  function clearSales() {
+  localStorage.removeItem('cart'); // removes everything from cart
+  alert('Cart cleared!');
+  location.reload(); // refresh the page to update the UI
+}
+</script>
+<script src="script.js"></script>
+<script>
+  function logout() {
+    localStorage.removeItem('role');
+    alert("Logged out!");
+    window.location.href = "index.html";
+  }
+  </script>
+</body>
+</html>

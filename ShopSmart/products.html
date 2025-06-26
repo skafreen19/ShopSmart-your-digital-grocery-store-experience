@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopSmart - Products</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Products</h2>
+  <div id="product-list"></div>
+  <header>
+    <h1>ShopSmart 🛒</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="admin.html">Admin</a>
+      <button  onclick="logout()"
+      style="margin-left: 10px; z-index: 9999;position: relative;">Logout</button>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Available Products</h2>
+      <ul>
+  <li>🧼 Soap - ₹40 <button onclick="addToCart('Soap', 40)">Add to Cart</button></li>
+  <li>🥛 Milk - ₹30 <button onclick="addToCart('Milk', 30)">Add to Cart</button></li>
+  <li>🍞 Bread - ₹25 <button onclick="addToCart('Bread', 25)">Add to Cart</button></li>
+  <li>🧂 Salt - ₹10 <button onclick="addToCart('Salt', 10)">Add to Cart</button></li>
+</ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ShopSmart. All rights reserved.</p>
+  </footer>
+  <script>
+  function addToCart(product, price) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ product, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${product} added to cart!`);
+  }
+</script>
+<h2>Products</h2>
+  <div id="product-list"></div>
+  <!-- Add Product Button (visible only for Admin) -->
+<button id="addProductBtn" style="display: none;">Add Product</button>
+
+<!-- Add Product Form -->
+<div id="addProductForm" style="display: none; margin-top: 1rem;">
+  <input type="text" id="productName" placeholder="Product Name" required />
+  <input type="number" id="productPrice" placeholder="Price (₹)" required />
+  <button onclick="addNewProduct()">Submit</button>
+</div>
+
+<script>
+  const role = localStorage.getItem('role');
+  const addBtn = document.getElementById('addProductBtn');
+  const form = document.getElementById('addProductForm');
+
+  // Show Add Product button if role is admin
+  if (role === 'admin' && addBtn && form) {
+    addBtn.style.display = 'inline-block';
+    // Make it clickable by adding a click listener
+    addBtn.addEventListener('click', () => {
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+  }
+
+  function addNewProduct() {
+    const name = document.getElementById("productName").value;
+    const price = parseFloat(document.getElementById("productPrice").value);
+
+    if (!name || isNaN(price)) {
+      alert("Please enter valid product details.");
+      return;
+    }
+
+    const ul = document.querySelector("ul");
+    const li = document.createElement("li");
+    li.innerHTML = `${name} - ₹${price} <button onclick="addToCart('${name}', ${price})">Add to Cart</button>`;
+    ul.appendChild(li);
+
+    alert("Product added!");
+    // Optional: clear form
+    document.getElementById("productName").value = "";
+    document.getElementById("productPrice").value = "";
+  }
+</script>
+<script src="script.js"></script>
+<script>
+  function logout() {
+    localStorage.removeItem('role');
+    alert("Logged out!");
+    window.location.href = "index.html";
+  }
+</script>
+</body>
+</html>

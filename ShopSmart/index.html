@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script
+  src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopSmart - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <form id="payment-form">
+  <label for="card-element">Credit or debit card</label>
+  <div id="card-element">
+    <!-- A Stripe Element will be inserted here. -->
+  </div>
+  <button id="checkout-btn">Checkout</button>
+  <p id="payment-status"></p>
+</form>
+
+
+  <header>
+    <h1>Welcome to ShopSmart 🛒</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Your Digital Grocery Store Experience</h2>
+      <p>
+        ShopSmart is your go-to online store for daily needs. Explore a wide range of products,
+        add to cart, and place orders seamlessly. Start shopping now!
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ShopSmart. All rights reserved.</p>
+  </footer>
+<!-- Simulated Login Buttons -->
+<hr>
+<h3>Simulated Login</h3>
+<p>Select your role:</p>
+<button onclick="loginAsUser()">Login as User</button>
+<button onclick="loginAsAdmin()">Login as Admin</button>
+
+<script>
+  function loginAsUser() {
+    localStorage.setItem("role", "user");
+    window.location.href = "products.html";
+  }
+
+  function loginAsAdmin() {
+    localStorage.setItem("role", "admin");
+    window.location.href = "admin.html";
+  }
+</script>
+</body>
+</html>
