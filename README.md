@@ -15,7 +15,7 @@ ShopSmart is your go-to online store for daily needs. Explore a wide range of pr
 
 ## 🚀 How to Run This Project
 1. Clone this repo:  
-   git clone https://github.com/your-username/ShopSmart.git
+   git clone https://github.com/skafreen19/ShopSmart.git
 2. Navigate to folder:  
    cd ShopSmart
 3. Install dependencies:  
