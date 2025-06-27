@@ -27,6 +27,10 @@ ShopSmart is your go-to online store for daily needs. Explore a wide range of pr
 ## 👩‍💻 Author
 Shaik Afreen
 
+## 👩‍💻 Project Demo
+click here to watch the demo video
+https://drive.google.com/file/d/1qCWd0W8zvDMfAUnQIN6gSMEA2RW_x_w_/view?usp=sharing
+
 ## 🔮 Future Improvements
 - Online payment integration
 - Product reviews and ratings
